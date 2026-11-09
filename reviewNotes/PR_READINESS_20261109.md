@@ -20,7 +20,7 @@ All feature branches are based on `base/upstream-master` SHA `590672174f137a9135
 - Branch: https://github.com/xronosuf/ximeraLatexDev/tree/feature/hierarchical-problem-numbering-20261109
 - PR text: reviewNotes/PR_DRAFT_C04B_NUMBERING.md
 - Diff only `src/problem.dtx` plus generated `ximera.4ht`. HTML DTX block verified against generated block, and legacy `probnum` attribute corrected to existing `numbered` CSS contract.
-- Preserves historical nested-counter method and default-off `onlineProblemNumbers` class option. Full Ximera HTML compile/runtime, nested-depth behavior, and numbering opt-in still should be checked in external regression workflow.
+- Preserves historical nested-counter method and default-off `onlineProblemNumbers` class option. Local TeX4ht smoke emitted nested values 1, 1.1, 1.2, 2, 2.1 when opt-in was set, and empty numbers by default. The older installed class had unrelated configuration errors, so this is not a clean modern build. Deep nesting, class option parser and browser CSS still need external checks. See reviewNotes/NUMBERING_HTML_SMOKE_20261109.md.
 - Prior open upstream PR #201 contains old combined styling/numbering patch. No edit or closure of #201 was attempted.
 
 ## C06 — Workflow reference docs: ready for user PR review
