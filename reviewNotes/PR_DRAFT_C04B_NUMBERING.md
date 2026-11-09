@@ -2,7 +2,7 @@
 
 **Target:** XimeraProject/ximeraLatex:master  
 **Head:** xronosuf/ximeraLatexDev:feature/hierarchical-problem-numbering-20261109  
-**Status:** Draft; full build/browser verification still needed.
+**Status:** DTX/generated source consistent; local HTML counter smoke verified (modern clean build and browser CSS review outstanding).
 
 ## Proposed title
 
@@ -22,7 +22,7 @@ The earlier proposal is https://github.com/XimeraProject/ximeraLatex/pull/201. R
 
 ### Verification
 
-Updated `src/problem.dtx` and its generated `ximera.4ht` HTML block were compared for consistency. Verify default/opt-in behavior and deeper nesting externally before marking acceptance-ready. No regression fixtures are included in this PR.
+Updated `src/problem.dtx` and its generated `ximera.4ht` HTML block were compared for consistency. A local TeX4ht smoke run with the recovered code produced the opt-in sequence **1, 1.1, 1.2, 2, 2.1** for nested problem/question/exercise environments and empty numbered attributes with the option off. The installed older toolchain separately reported unrelated configuration errors, so this does not replace a clean modern build or browser check. Deep nesting and class option parsing still merit external validation. No regression fixtures are included in this PR.
 
 ### Unchanged
 
