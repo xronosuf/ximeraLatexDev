@@ -2,18 +2,18 @@
 
 All feature branches are based on `base/upstream-master` SHA `590672174f137a913598f78e38df831ec23ff5ba` (matching XimeraProject/ximeraLatex:master). They exclude master-only workflow docs and review notes; documentation has its own branch.
 
-## C02 — SagePlot: APPROVED BY USER; ready to open upstream PR
+## C02 — SagePlot: submitted to upstream as PR #277
 - Branch: https://github.com/xronosuf/ximeraLatexDev/tree/feature/sageplot-inert-html-20261109
 - PR text: reviewNotes/PR_DRAFT_C02_SAGEPLOT.md
 - Diff: `src/interactives/sagemath.dtx`, generated `ximera.4ht` only. Source/generated block verified equivalent, plus code matches original tested testFiles implementation and Xronos renderer contract.
-- User explicitly approved the proposed title and description. A GitHub create-PR attempt to `XimeraProject/ximeraLatex` returned **403 Resource not accessible by integration**. NO UPSTREAM PR EXISTS as a result. User will need to open from fork or adjust GitHub connection permissions. Do not claim it was submitted.
+- User approved title and description, then submitted the PR through GitHub: https://github.com/XimeraProject/ximeraLatex/pull/277. GitHub confirmed it is open, targeting master, with exactly the DTX source and generated 4ht changed; the earlier connector-side submission attempt had failed 403.
 - User-supplied deployed activity: https://dev.xronos.clas.ufl.edu/testsuite/test-suite-xourse/testSuite/14-sageplot-svg. Content's GitHub source verified; current browser load not verified.
 
 ## C01 — HaLLMos: source and PR draft prepared; full build/live remote behavior unverified
 - Branch: https://github.com/xronosuf/ximeraLatexDev/tree/feature/hallmos-embed-20261109
 - PR text: reviewNotes/PR_DRAFT_C01_HALLMOS.md
 - Files: `src/interactives/hallmos.dtx`, `ximera.dtx`, `ximera.ins`, generated `ximera.cls`, `ximera.4ht`.
-- Generated class and HTML fragments match DTX. HTML reproduces historical figure/blockquote/embed script format; PDF outputs statement rather than historical placeholder. Optional metadata is still ignored.
+- Generated class and HTML fragments match DTX. The MAA4102 local class is byte-identical to the historical HaLLMos demo class, and their HTML HaLLMos markup is equivalent. A local PDF smoke compiled the actual MAA4102 statement; a local TeX4ht smoke emitted the script/figure/blockquote/math markup, though the old installed Ximera toolchain separately reported unrelated configuration errors. See reviewNotes/HALLMOS_MAA4102_VERIFICATION_20261109.md. PDF outputs statement rather than historical placeholder. Optional metadata is still ignored.
 - User-reported deployed activity: https://xronos.clas.ufl.edu/maa4102/Homework1/p05; GitHub author source verified. HTML/PDF full build verification remains.
 
 ## C04b — Hierarchical numbering: source and PR draft prepared; behavior tests external
@@ -33,7 +33,7 @@ All feature branches are based on `base/upstream-master` SHA `590672174f137a9135
 - PR text: reviewNotes/PR_DRAFT_C04A_PDF_STYLING.md
 - Files: new `src/pdfstyling.dtx`, updated packages/registrations, generated `ximera.cls`. The DTX class block is verified present identically in class.
 - Local standalone pdflatex checks compiled in all four cases: default nested environment frames, five-level deep nesting, optional color, and disabling frames. These are **component checks, not a full Ximera build**. No test files were committed.
-- Does not include numbering changes; deep frames clamp colors after level IV. External full Ximera build and visual review pending.
+- Does not include numbering changes; deep frames clamp colors after level IV. Corrected a historical omission so the literal `theorem` environment receives a frame. Local TeX Live test compiled a nested theorem/example/theorem series with the plain `tcolorbox` package. External full modern Ximera build and visual review pending.
 
 ## C07 — Expandable footnotes: source and PR draft prepared; browser behavior check outstanding
 - Branch: https://github.com/xronosuf/ximeraLatexDev/tree/feature/expandable-footnotes-20261109
@@ -49,5 +49,5 @@ All feature branches are based on `base/upstream-master` SHA `590672174f137a9135
 - C05 personal course PDF/QR styling and C08 old xmsection aliases remain out of scope.
 
 ## Submission safety
-- User reviewed and approved only SagePlot PR text so far. Do not submit other PRs without review. GitHub connector currently cannot create upstream PRs (403), so only fork branches and review notes were created.
+- User reviewed and approved SagePlot PR text and submitted upstream PR #277 manually. Do not submit any other PRs without review. GitHub connector previously returned 403 creating an upstream PR; other feature work remains in the fork.
 - Full upstream build / browser tests were not claimed except local component checks. Functional regression tests belong in external test suite, NOT in upstream feature branches.
