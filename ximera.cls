@@ -538,6 +538,7 @@
         \definecolor{xmNestingColorLevelIII}{RGB}{70,70,70}
         \definecolor{xmNestingColorLevelIV}{RGB}{105,105,105}
       \fi
+      \tcolorboxenvironment{theorem}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{algorithm}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{axiom}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{claim}{colframe=\xmNestingFrameColor,colback=xmBackground}
