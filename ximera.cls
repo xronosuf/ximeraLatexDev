@@ -21,6 +21,7 @@
 %% src/only.dtx  (with options: `classXimera')
 %% src/outcomes.dtx  (with options: `classXimera')
 %% src/problem.dtx  (with options: `classXimera')
+%% src/pdfstyling.dtx  (with options: `classXimera')
 %% src/hints.dtx  (with options: `classXimera')
 %% src/abstract.dtx  (with options: `classXimera')
 %% src/title.dtx  (with options: `classXimera')
@@ -173,6 +174,7 @@
 \RequirePackage{listings} %% is this required???
 
 \RequirePackage{xkeyval}
+\RequirePackage{tcolorbox}
 
 \RequirePackage{currfile}
 \RequirePackage{comment}
@@ -515,6 +517,59 @@
 \createProblemEnv{exercise}{Exercise}
 \createProblemEnv{exploration}{Exploration}
 \createProblemEnv{question}{Question}
+\definecolor{xmNestingColorLevelI}{RGB}{102,255,178}
+\definecolor{xmNestingColorLevelII}{RGB}{102,178,255}
+\definecolor{xmNestingColorLevelIII}{RGB}{255,102,178}
+\definecolor{xmNestingColorLevelIV}{RGB}{178,255,102}
+\definecolor{xmBackground}{RGB}{255,255,255}
+\newif\ifdispNest
+\dispNesttrue
+\newif\ifdispNestColors
+\dispNestColorsfalse
+\newcommand{\xmNestingFrameColor}{%
+  \ifnum\value{tcblayer}>4 xmNestingColorLevelIV%
+  \else xmNestingColorLevel\Roman{tcblayer}\fi}
+\AtBeginDocument{%
+  \pdfOnly{%
+    \ifdispNest
+      \ifdispNestColors\else
+        \definecolor{xmNestingColorLevelI}{RGB}{0,0,0}
+        \definecolor{xmNestingColorLevelII}{RGB}{35,35,35}
+        \definecolor{xmNestingColorLevelIII}{RGB}{70,70,70}
+        \definecolor{xmNestingColorLevelIV}{RGB}{105,105,105}
+      \fi
+      \tcolorboxenvironment{algorithm}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{axiom}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{claim}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{conclusion}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{condition}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{conjecture}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{corollary}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{criterion}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{definition}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{example}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{explanation}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{fact}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{formula}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{idea}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{lemma}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{model}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{notation}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{observation}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{proposition}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{paradox}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{procedure}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{remark}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{summary}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{template}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{warning}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{problem}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{question}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{exploration}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{exercise}{colframe=\xmNestingFrameColor,colback=xmBackground}
+    \fi
+  }%
+}
 \newcounter{hintLevel}
 \setcounter{hintLevel}{0}
 \newenvironment{hint}{}{}
