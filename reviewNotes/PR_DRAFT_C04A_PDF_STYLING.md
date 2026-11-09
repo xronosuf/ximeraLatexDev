@@ -10,7 +10,7 @@ Add optional nesting cues for problem and theorem environments in PDF
 
 ## Proposed PR body
 
-Introduce a `src/pdfstyling.dtx` implementation of PDF-only nested `tcolorbox` frames for theorem and problem environments. By default nesting frames are displayed in grayscale; authors may disable them by setting `\dispNestfalse`, or opt into color using `\dispNestColorstrue` before `\begin{document}`. Custom colors may be set by the author.
+Introduce a `src/pdfstyling.dtx` implementation of PDF-only nested `tcolorbox` frames for theorem-like and problem environments, including the built-in `theorem` environment that was inadvertently omitted from the 2025 patch. By default nesting frames are displayed in grayscale; authors may disable them by setting `\dispNestfalse`, or opt into color using `\dispNestColorstrue` before `\begin{document}`. Custom colors may be set by the author.
 
 This feature was extracted from the previously open bundled 'problem style revamp' PR #201. Hierarchical HTML problem numbering is proposed separately.
 
@@ -20,4 +20,4 @@ Unlike the historical branch, deep nesting beyond the fourth color level reuses 
 
 ### Verification
 
-The extracted DTX code matches its generated class block, and a standalone local LaTeX proof-of-concept of nested tcolorbox wrappers compiled. Full Ximera class build and on/off/color variant review are still required.
+The extracted DTX code matches its generated class block. Standalone LaTeX smoke checks compiled nested example frames, disabled/colored/deep frames, and an alternating `theorem`–`example`–`theorem` nesting using the actual `tcolorbox` package option set. These checks do not establish that a full modern Ximera class build passes. Full Ximera class build and on/off/color variant review are still required.
