@@ -6,7 +6,7 @@
 % Set \dispNestfalse before \begin{document} to disable all nesting frames.
 % Set \dispNestColorstrue to enable colored outlines (default: grayscale).
 % Color names may be adjusted with \definecolor in the document preamble.
-% Frame colors cycle through four levels, with deeper levels reusing level IV.
+% The first four frame levels have distinct colors; deeper levels reuse level IV.
 %    \begin{macrocode}
 %<*classXimera>
 \definecolor{xmNestingColorLevelI}{RGB}{102,255,178}
@@ -30,6 +30,7 @@
         \definecolor{xmNestingColorLevelIII}{RGB}{70,70,70}
         \definecolor{xmNestingColorLevelIV}{RGB}{105,105,105}
       \fi
+      \tcolorboxenvironment{theorem}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{algorithm}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{axiom}{colframe=\xmNestingFrameColor,colback=xmBackground}
       \tcolorboxenvironment{claim}{colframe=\xmNestingFrameColor,colback=xmBackground}
