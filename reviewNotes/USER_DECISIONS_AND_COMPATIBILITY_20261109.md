@@ -24,20 +24,20 @@ User supplied these deployed links and confirmed they were used successfully in 
 - Course homepage / additional activities: https://xronos.clas.ufl.edu/maa4102
 
 Actual source found: https://github.com/xronosuf/maa4102/blob/main/Homework1/p05.tex, which uses:
-\`\`\`latex
+```latex
 \begin{hallmosEnv}[]
   Let $x$ and $y$ be real numbers, and $n$ be a positive integer. Then
   % difference-of-powers identity ...
 \end{hallmosEnv}
-\`\`\`
+```
 
-These are **user-verified deployed examples** with a confirmed matching source file. The published pages did not load in the automated browser (cache miss); **do not claim independent live testing**. Demo links belong in the eventual HaLLMos PR description once verified as publicly viewable by reviewers. All \`maa4102\` files remain read-only.
+These are **user-verified deployed examples** with a confirmed matching source file. The published pages did not load in the automated browser (cache miss); **do not claim independent live testing**. Demo links belong in the eventual HaLLMos PR description once verified as publicly viewable by reviewers. All `maa4102` files remain read-only.
 
 ## Dynamic feedback: technical notes
 
-The Ximera source already provides \`src/validators/validatorHook.dtx\` for stable validator JavaScript and \`src/answer.dtx\` supports \`validator=...\` on \`\\answer\`. Existing permanent validators live in \`src/validators/\`.
+The Ximera source already provides `src/validators/validatorHook.dtx` for stable validator JavaScript and `src/answer.dtx` supports `validator=...` on `\answer`. Existing permanent validators live in `src/validators/`.
 
-In \`xronosuf/ValidatorExamples:main/.ximera_local/src/validators/factorCheck.dtx\`, extra guarded calls to \`displayMessageBelowCurrentAnswer(text)\` provide targeted explanatory messages. The helper is supplied in \`pageManipulationValidators/advancedFeedback.tex\` (tracks active answer/problem, inserts \`.custom-answer-feedback\` with role=status and aria-live=polite). A term-count validator example calls this helper too.
+In `xronosuf/ValidatorExamples:main/.ximera_local/src/validators/factorCheck.dtx`, extra guarded calls to `displayMessageBelowCurrentAnswer(text)` provide targeted explanatory messages. The helper is supplied in `pageManipulationValidators/advancedFeedback.tex` (tracks active answer/problem, inserts `.custom-answer-feedback` with role=status and aria-live=polite). A term-count validator example calls this helper too.
 
 **Consequence:** merely porting the modified factorCheck alone is insufficient: in the old example the helper comes from page-specific authored JavaScript. For a self-contained Ximera feature we must provide a reliable generic helper, decide how it is incorporated into validated page output, and ensure message attachment to the correct answer under nested/multiple-answer conditions. Incorporate it and required validators in **one coherent feature PR** unless the user later changes scope. Don't claim screen-reader validation before testing.
 
@@ -45,10 +45,10 @@ Provenance: https://github.com/xronosuf/ValidatorExamples/blob/main/pageManipula
 
 ## Nested PDF styling: review status
 
-\`xronosuf/ximeraLatexDev:jason-problemStyleRevamp/src/pdfstyling.dtx\` contains:
-- \`\\newif\\ifdispNest\`; \`\\dispNesttrue\` initial default.
-- \`\\newif\\ifdispNestColors\`; \`\\dispNestColorsfalse\` initial default.
-- \`\\AtBeginDocument\` guarded by \`\\pdfOnly\`, followed by \`\\ifdispNest\` and tcolorbox wrapping for various theorem and problem environments.
+`xronosuf/ximeraLatexDev:jason-problemStyleRevamp/src/pdfstyling.dtx` contains:
+- `\newif\ifdispNest`; `\dispNesttrue` initial default.
+- `\newif\ifdispNestColors`; `\dispNestColorsfalse` initial default.
+- `\AtBeginDocument` guarded by `\pdfOnly`, followed by `\ifdispNest` and tcolorbox wrapping for various theorem and problem environments.
 
 Therefore switches were **implemented in code**, but compile integrity, all selected environment names, nested levels, ability to turn the feature off before document start, and intended defaults are **not yet verified**. Hold as potentially incomplete, and don't bundle with legacy course-specific styling.
 
@@ -56,14 +56,16 @@ Therefore switches were **implemented in code**, but compile integrity, all sele
 
 Verified by reading current upstream code and the XimeraProject FirstSteps default-branch CSS:
 
-- Current upstream \`src/options.dtx\` declares \`\\newif\\ifnumberedProblems\`, defaults to false, and registers \`onlineProblemNumbers\` class option.
-- Current upstream \`src/problem.dtx\` has its HTML problem-numbering block **commented out**. It defines \`\\problemNumDisp{}\` (empty) and emits an HTML attribute named \`numbered\` on problem elements.
-- Current upstream generated class retains a PDF-facing \`\\problemNumber\` mechanism and a default problem-counter scheme, so HTML and PDF behavior should be checked separately.
-- \`XimeraProject/ximeraFirstSteps:main/global.css\` uses \`attr(numbered)\` in headings; \`aFirstXourseVariant.css\` also uses \`attr(numbered)\`. One CSS comment explicitly says counting should happen in TeX rather than pure CSS.
-- Historical \`xronosuf/ximeraLatexDev:jason-problemStyleRevamp/src/problem.dtx\` partially enables hierarchical number generation and the \`\\ifnumberedProblems\` conditional, **but emits attribute \`probnum\`** rather than \`numbered\`! This name difference is a direct interoperability risk with FirstSteps CSS and any server styling.
-- Historical branch's \`\\probNumber\` and \`\\problemNumDisp\` logic should be inspected for nesting, counter reset, and depth beyond five levels; run tests with number option on/off and author's user-level toggle.
+- Current upstream `src/options.dtx` declares `\newif\ifnumberedProblems`, defaults to false, and registers `onlineProblemNumbers` class option.
+- Current upstream `src/problem.dtx` has its HTML problem-numbering block **commented out**. It defines `\problemNumDisp{}` (empty) and emits an HTML attribute named `numbered` on problem elements.
+- Current upstream generated class retains a PDF-facing `\problemNumber` mechanism and a default problem-counter scheme, so HTML and PDF behavior should be checked separately.
+- `XimeraProject/ximeraFirstSteps:main/global.css` uses `attr(numbered)` in headings; `aFirstXourseVariant.css` also uses `attr(numbered)`. One CSS comment explicitly says counting should happen in TeX rather than pure CSS.
+- Historical `xronosuf/ximeraLatexDev:jason-problemStyleRevamp/src/problem.dtx` partially enables hierarchical number generation and the `\ifnumberedProblems` conditional, **but emits attribute `probnum`** rather than `numbered`! This name difference is a direct interoperability risk with FirstSteps CSS and any server styling.
+- Historical branch's `\probNumber` and `\problemNumDisp` logic should be inspected for nesting, counter reset, and depth beyond five levels; run tests with number option on/off and author's user-level toggle.
 
-**Proposal:** treat as independent numbering feature PR only after resolving the attribute contract. Favor the existing \`numbered\` attribute unless server runtime evidence supports an intentional switch. Preserve unnumbered default; allow author to enable via class option and likely \`\\numberedProblemstrue\` in document preamble (test). Other number formats are a possible extension, not a promise until supported.
+- Direct GitHub source search also confirms that both `xronosuf/server` and `XimeraProject/server` use `attr(numbered)` in their styling (`public/stylesheets/theorems.scss`), with no matching `probnum` hits in the searched code. Thus compatibility concern is not limited to the FirstSteps stylesheets.
+
+**Proposal:** treat as independent numbering feature PR only after resolving the attribute contract. Favor the existing `numbered` attribute unless server runtime evidence supports an intentional switch. Preserve unnumbered default; allow author to enable via class option and likely `\numberedProblemstrue` in document preamble (test). Other number formats are a possible extension, not a promise until supported.
 
 Sources:
 - https://github.com/XimeraProject/ximeraLatex/blob/master/src/options.dtx
@@ -73,11 +75,11 @@ Sources:
 
 ## Legacy xmsection
 
-Searches against default-branch code of \`XimeraProject/ximeraLatex\` and \`XimeraProject/ximeraFirstSteps\` found no \`xmsection\` reference. Original historical \`xronosuf/ximeraFirstSteps:wim_test-ku-style/.ximera/ximera.cls\` contained \`\\providecommand\\xmsection\\section\` and corresponding subsection alias. User requested dropping if not present in current upstream/firststeps: **DROP**.
+Searches against default-branch code of `XimeraProject/ximeraLatex` and `XimeraProject/ximeraFirstSteps` found no `xmsection` reference. Original historical `xronosuf/ximeraFirstSteps:wim_test-ku-style/.ximera/ximera.cls` contained `\providecommand\xmsection\section` and corresponding subsection alias. User requested dropping if not present in current upstream/firststeps: **DROP**.
 
 ## Safety and stage gate
 
-- Source repositories including \`maa4102\`, \`ValidatorExamples\`, XimeraProject upstream and firstSteps remain strictly read-only.
-- Work/investigation records are written only to \`xronosuf/ximeraLatexDev:review/ximera-recovery-inventory-20261109\`; the clean upstream baseline remains untouched.
+- Source repositories including `maa4102`, `ValidatorExamples`, XimeraProject upstream and firstSteps remain strictly read-only.
+- Work/investigation records are written only to `xronosuf/ximeraLatexDev:review/ximera-recovery-inventory-20261109`; the clean upstream baseline remains untouched.
 - One standalone PR per new feature, grouping only required supporting changes. Group bug fixes only when technically coherent.
-- After classification, obtain user's inventory/PR-boundary review before implementing features on separate review branches; final \`feature/...\` PR heads must exclude all draft/investigation content.
+- After classification, obtain user's inventory/PR-boundary review before implementing features on separate review branches; final `feature/...` PR heads must exclude all draft/investigation content.
