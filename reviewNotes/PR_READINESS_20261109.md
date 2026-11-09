@@ -39,7 +39,7 @@ All feature branches are based on `base/upstream-master` SHA `590672174f137a9135
 - Branch: https://github.com/xronosuf/ximeraLatexDev/tree/feature/expandable-footnotes-20261109
 - PR text: reviewNotes/PR_DRAFT_C07_FOOTNOTES.md
 - Diff only `src/footnotes.dtx` plus generated `ximera.4ht`. The source and generated blocks match exactly after normalization.
-- Fixes malformed CSS style syntax; adds button ARIA state/controls and a safer JS state toggle without overriding configured `fncolor`. Full browser/assistive technology and full Ximera compile check pending. Open PR #272 claims footnotes in description but did not include footnotes.dtx in its retrieved changed file list.
+- Fixes malformed CSS style syntax (including the formerly missed `vertical-align=baseline`), removes the old fixed blue wrapper color, adds button ARIA state/controls and a safer JS toggle. Local TeX4ht output smoke generated correctly linked footnote controls for two notes, and the generated JS passed Node syntax check. The old installed class emits separate unrelated TeX4ht errors, so a modern clean build and browser/accessibility checks are still pending. Open PR #272 mentions footnotes in its description but did not include footnotes.dtx in its retrieved changed-file list.
 
 ## C03 — Dynamic validator feedback: PENDING, stop implementation
 - Deferred at user request. Original material at https://github.com/xronosuf/ValidatorExamples/blob/main/pageManipulationValidators/advancedFeedback.tex and https://github.com/xronosuf/ValidatorExamples/blob/main/.ximera_local/src/validators/factorCheck.dtx.
