@@ -176,6 +176,7 @@
 
 \RequirePackage{xkeyval}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
 
 \RequirePackage{currfile}
 \RequirePackage{comment}
@@ -524,7 +525,7 @@
 \definecolor{xmNestingColorLevelIV}{RGB}{178,255,102}
 \definecolor{xmBackground}{RGB}{255,255,255}
 \newif\ifdispNest
-\dispNesttrue
+\dispNestfalse
 \newif\ifdispNestColors
 \dispNestColorsfalse
 \newcommand{\xmNestingFrameColor}{%
@@ -539,36 +540,36 @@
         \definecolor{xmNestingColorLevelIII}{RGB}{70,70,70}
         \definecolor{xmNestingColorLevelIV}{RGB}{105,105,105}
       \fi
-      \tcolorboxenvironment{theorem}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{algorithm}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{axiom}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{claim}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{conclusion}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{condition}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{conjecture}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{corollary}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{criterion}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{definition}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{example}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{explanation}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{fact}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{formula}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{idea}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{lemma}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{model}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{notation}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{observation}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{proposition}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{paradox}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{procedure}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{remark}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{summary}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{template}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{warning}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{problem}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{question}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{exploration}{colframe=\xmNestingFrameColor,colback=xmBackground}
-      \tcolorboxenvironment{exercise}{colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{theorem}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{algorithm}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{axiom}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{claim}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{conclusion}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{condition}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{conjecture}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{corollary}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{criterion}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{definition}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{example}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{explanation}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{fact}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{formula}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{idea}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{lemma}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{model}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{notation}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{observation}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{proposition}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{paradox}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{procedure}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{remark}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{summary}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{template}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{warning}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{problem}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{question}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{exploration}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
+      \tcolorboxenvironment{exercise}{enhanced,breakable,colframe=\xmNestingFrameColor,colback=xmBackground}
     \fi
   }%
 }
